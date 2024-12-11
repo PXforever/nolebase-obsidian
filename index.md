@@ -2,12 +2,12 @@
 layout: home
 sidebar: false
 
-title: Nólëbase
-titleTemplate: 记录回忆，知识和畅想的地方
+title: 彭煊
+titleTemplate: 笔记与知识的海洋
 
 hero:
-  name: g~Nj$3J2^
-  text: 记录回忆，知识和畅想的地方
+  name: 彭煊
+  text: 笔记与知识的海洋
   tagline: 以 Nólëbase 为名，读作 nole-base，取自意为「知识」的昆雅语 nólë 和意为「基础」的英文 base，即「知识库」
   image:
     src: /logo.svg
