@@ -126,7 +126,7 @@ export default defineConfig({
     ['script', { 'defer': 'true', 'data-domain': 'nolebase.ayaka.io', 'data-api': '/api/v1/page-external-data/submit', 'src': '/assets/page-external-data/js/script.js' }],
   ],
   themeConfig: {
-    outline: { label: '页面大纲', level: 'deep' },
+    outline: { label: '页面大纲', level: [1, 6] },
     darkModeSwitchLabel: '切换主题',
     editLink: {
       pattern: `${githubRepoLink}/tree/main/:path`,
