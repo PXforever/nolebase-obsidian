@@ -36,6 +36,9 @@ features:
   - title: 由 Obsidian 驱动
     details: 强大的知识库管理工具，支持花样繁多的插件和拓展，让知识管理变得更加简单。
     icon: 🗃
+  - title: 专注嵌入式内核开发
+    details: 文章内容基本围绕着嵌入式开发进行编写
+    icon: 💪
 ---
 
 <HomePage />

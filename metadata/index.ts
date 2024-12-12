@@ -2,8 +2,8 @@ import type { Creator } from '../scripts/types/metadata'
 import { getAvatarUrlByGithubName } from '../scripts/utils'
 
 /** 文本 */
-export const siteName = 'Nólëbase'
-export const siteShortName = 'Nólëbase'
+export const siteName = '彭煊的笔记'
+export const siteShortName = '彭煊'
 export const siteDescription = '记录回忆，知识和畅想的地方'
 
 /** 文档所在目录 */
