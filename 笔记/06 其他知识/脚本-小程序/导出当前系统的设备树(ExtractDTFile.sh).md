@@ -1,6 +1,8 @@
 ---
 share: "true"
 ---
+> 该脚本主要是将当前的系统设备树导出为**DTS文件**
+> 设备树的导出源为`/proc/device-tree`目录在的所有节点信息。
 
 ```shell
 #!/bin/bash
