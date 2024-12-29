@@ -8,7 +8,7 @@ share: "true"
 我们可以选择如下2种方式进行调试：
 + 通过`uboot`命令行，添加到`bootargs`中
 ```shell
-# uboot下执行
+#uboot下执行
 setenv bootargs "${bootargs} initcall_debug"
 saveenv
 ```
