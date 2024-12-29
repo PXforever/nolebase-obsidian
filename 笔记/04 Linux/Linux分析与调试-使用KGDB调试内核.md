@@ -556,6 +556,11 @@ CONFIG_DEBUG_INFO_DWARF5=y
 CONFIG_KGDB=y 
 CONFIG_KGDB_SERIAL_CONSOLE=y
 CONFIG_KGDB_KDB=y
+# 记得关闭优化，不然很多局部变量都会被优化掉，调试查看不到任何数值
+# 1. 进行优化，同时保留调试信息
+# 2. 关闭减少调试信息选项
+CONFIG_CC_OPTIMIZE_FOR_DEBUGGING=y
+CONFIG_DEBUG_INFO_REDUCED=n
 ```
 这里的`CONFIG_KGDB_KDB`是可选选项，它的作用是，在你进入`KGDB`中断时(错误,主动进入)，你可以通过串口命令行进行基本的调试。
 ![[笔记/01 附件/Linux分析与调试-使用KGDB调试内核/file-20241108114313679.png|笔记/01 附件/Linux分析与调试-使用KGDB调试内核/file-20241108114313679.png]]
