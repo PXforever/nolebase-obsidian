@@ -4,6 +4,8 @@ share: "true"
 > 这是一个用来解析设备树的引用关系的脚本，比如一个`xxx.dts`可能会引用多个`dtsi`文件，我们可以将其打印出来。
 > 例如：`./dtsParse.sh arch/arm64/boot/dts/rockchip/rk3588-linux.dts arch/arm64/boot/dts/rockchip`
 
+下载文件[dtsParse.sh](https://my-download-1333032936.cos.ap-guangzhou.myqcloud.com/dtsParse.sh)
+
 ```shell
 #!/bin/bash
 
