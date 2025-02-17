@@ -59,8 +59,8 @@ aarch64-none-linux-gnu-objcopy $(OBJCOPYFLAGS) $(OBJCOPYFLAGS_$(@F)) vmlinux Ima
 那么为什么需要分析它，因为在`uboot`跳转到内核时，不单单时简单的跳转到`Image`的第一个指令开始执行，而是会简单的解析`Image`的头部信息，根据此进行跳转。
 ## Image的结构
 在`Image`文件的头部，是一串`PE/COFF`的头，他是`Windows`上`exe`常用的格式，也是`EFI`的一种实现。
-![[笔记/01 附件/file-20241113111358869.png|笔记/01 附件/file-20241113111358869.png]]
-![[笔记/01 附件/file-20241113111428873.png|笔记/01 附件/file-20241113111428873.png]]
+![[笔记/01 附件/Linux源码分析-uboot切换到内核过程/file-20241113111358869.png|笔记/01 附件/Linux源码分析-uboot切换到内核过程/file-20241113111358869.png]]
+![[笔记/01 附件/Linux源码分析-uboot切换到内核过程/file-20241113111428873.png|笔记/01 附件/Linux源码分析-uboot切换到内核过程/file-20241113111428873.png]]
 
 # UBOOT的启动
 ## 启动流程
@@ -128,7 +128,7 @@ SECTIONS
 ```
 结合链接脚本来看，也就是说`__HEAD`接下来的代码会放在最开始的位置。这里的`.`表示当前位置，而`_text`和`KEEP(*(.head.text))`都意味着`section:.head.text`的数据会从首部线性排列。
 我们可以验证，在`Image`中的首部是`PE的标志(MZ)`，接着是`code1`，`text_offset`，`image_size`。使用`HEX`查看：
-![[笔记/01 附件/file-20241113134034737.png|笔记/01 附件/file-20241113134034737.png]]
+![[笔记/01 附件/Linux源码分析-uboot切换到内核过程/file-20241113134034737.png|笔记/01 附件/Linux源码分析-uboot切换到内核过程/file-20241113134034737.png]]
 上面解析的信息是（注释是对应`head.S`中的指令）：
 ```c
 4D 5A 40 FA = "MZ"    // 对应efi_signature_nop(ccmp x18, #0, #0xd, pl)
@@ -139,7 +139,7 @@ SECTIONS
 ```
 上面的`ccmp x18, #0, #0xd, pl`指令通过比较巧妙的操作，使得编译生成`MZ`的头。所以`PE/COFF`头实际上是由汇编代码配合`链接脚本`生成的。
 在解析完成`EFI`的头部后，就会执行`code0`,`code1`，我们根据文档[内核(ARM64)booting](https://www.kernel.org/doc/Documentation/arm64/booting.txt)可以知道：
-![[笔记/01 附件/file-20241113134243237.png|笔记/01 附件/file-20241113134243237.png]]
+![[笔记/01 附件/Linux源码分析-uboot切换到内核过程/file-20241113134243237.png|笔记/01 附件/Linux源码分析-uboot切换到内核过程/file-20241113134243237.png]]
 所以在`b primary_entry`后，我们可以按正常的代码调用逻辑得到以下的调用栈：
 ```c
 primary_entry
