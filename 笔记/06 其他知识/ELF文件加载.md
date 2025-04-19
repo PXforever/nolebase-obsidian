@@ -16,7 +16,7 @@ share: "true"
 
 ![[笔记/01 附件/ELF文件加载/elf链接过程.drawio.png|笔记/01 附件/ELF文件加载/elf链接过程.drawio.png]]
 
-![[笔记/01 附件/elf链接过程(详细).png|笔记/01 附件/elf链接过程(详细).png]]
+![[笔记/01 附件/ELF文件加载/elf链接过程(详细).png|笔记/01 附件/ELF文件加载/elf链接过程(详细).png]]
 
 从上面可以看到：
 
@@ -341,7 +341,7 @@ typedef struct {
 + 这个字段是 ELF **Rela** 格式（带 addend）独有的，用于存储计算目标地址时的修正值（addend）。
 + ELF 也有一种 **Rel** 格式，它的 `r_addend` 被省略，改由目标地址中原本存储的值提供。
 
-注意：更加详细的重定向信息请参考https://www.52pojie.cn/thread-1985443-1-1.html#51841344_relocation-table
+注意：更加详细的重定向信息请参考:https://www.52pojie.cn/thread-1985443-1-1.html#51841344_relocation-table
 
 # ELF 加载示例(代码)
 
