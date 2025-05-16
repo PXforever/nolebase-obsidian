@@ -71,10 +71,13 @@ echo
 
 ### ① 同步 rootfs
 echo "① >>>>>===== 开始同步远程 rootfs: root@$REMOTE_IP:$REMOTE_DIR ====="
+if [ ! -d "$LOCAL_DIR" ]; then
+    echo "🔧 创建本地目录: $LOCAL_DIR"
+    mkdir -p "$LOCAL_DIR"
+fi
 
 # 检查 pv 是否可用
-#if command -v pv >/dev/null 2>&1; then
-if ((0)); then
+if command -v pv >/dev/null 2>&1; then
     echo "🔍 检测到 pv，使用 tar + pv 简洁模式"
 
     if [ "$VERBOSE" -eq 1 ]; then
@@ -86,8 +89,6 @@ if ((0)); then
         TOTAL_KB=$(ssh root@$REMOTE_IP "du -sx --exclude=/proc --exclude=/sys --exclude=/dev --exclude=/run /" | awk '{print $1}')
         TOTAL_BYTES=$((TOTAL_KB * 1024))
         echo "📦 总大小: $((TOTAL_KB / 1024)) MB"
-
-        mkdir -p "$LOCAL_DIR"
 
         ssh root@$REMOTE_IP "tar -cf - --one-file-system \
             --exclude=/proc --exclude=/sys --exclude=/dev --exclude=/run \
