@@ -177,7 +177,7 @@ gzip -9 initramfs.cpio
 ```
 # 加载过程分析
 `initramfs`是一个`rootfs`，所以它最终需要进行挂载到根目录。它的加载过程可以如下的代码流程执行：
-![[笔记/01 附件/initramfs与文件系统加载过程.drawio.png|笔记/01 附件/initramfs与文件系统加载过程.drawio.png]]
+![[笔记/01 附件/Linux构建分析-initramfs/initramfs与文件系统加载过程.drawio.png|笔记/01 附件/Linux构建分析-initramfs/initramfs与文件系统加载过程.drawio.png]]
 根据上图，我们可以清晰看到，`rootfs`文件系统的组织结构会在一开始就构建好。接着通过`rdinit=/sbin/init`这个异步的`__init_call`启动加载`initramfs`，并解压到前面的文件系统中。
 最终在`if (init_eaccess(ramdisk_execute_command) != 0)`中判断是否使用`ramdisk`中的初始化脚本。如果没有则使用`prepare_namespace`，启动外部的`rootfs(由root=/dev/xxxx)`设置的。
 这里面有几个环境变量需要理解：
