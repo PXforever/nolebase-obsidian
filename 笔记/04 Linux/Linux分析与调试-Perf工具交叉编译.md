@@ -127,7 +127,7 @@ make prefix=/usr/local install
 # 或者
 make DESTDIR=/usr/local install
 ```
-![[笔记/01 附件/01 附件/Linux分析与调试-Perf工具交叉编译/image.png|04 Linux/assets/Linux分析与调试-Perf工具交叉编译/image.png]]
+![[笔记/01 附件/01 附件/Linux分析与调试-Perf工具交叉编译/image.png|image.png]]
 
 
 
