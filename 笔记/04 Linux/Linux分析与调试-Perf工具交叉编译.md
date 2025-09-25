@@ -91,9 +91,43 @@ test-libelf.c:2:20: fatal error: libelf.h: No such file or directory
 ![[笔记/01 附件/Linux分析与调试-Perf工具交叉编译/image-20240728123550210.png|笔记/01 附件/Linux分析与调试-Perf工具交叉编译/image-20240728123550210.png]]
 怪不得，错误，所以这要求交叉编译的`libelf`，且是交叉编译的库，一般在`buildroot/out/host`下面这是`buildroot`的交叉编译工具库，所以我们需要在`buildroot`开启`libelf`，但是`libelf`又需要`linux kernel`，结合上一节问题，发现问题暂时无解。
 
+# 尝试第三种(在设备上面直接编译)
+`perf`工具来自`linux-tools-$(uname -r)`包中，但是有时候嵌入式并没办法获取指定的工具，那么此时我们只能交叉编译或者本机编译，交叉编译会面临上面一样的问题，各种库确实，由于交叉编译环境，只能通过交叉编译各种库，并且安装到交叉编译环境中才能正常的制作`perf`工具。
+不过，通过在设备上直接编译可以大大减少难度。
+这里测试使用的是：
++ `RK3588`
++ `Linux-6.6.29`
+先将源码上传至机器，可以参考[[Linux-Makefile编译过程--xx-pkg|制作源码包]]进行打包，完成后，进行如下步骤：
+```shell
+# 解压
+tar -xvf linux-upstream_6.6.29-gaf935fbe243f.orig.tar.gz
 
+# 进入源码
+cd linux
 
+# 安装环境
+apt update
+apt install python3 python3-dev python3-distutils
+apt install build-essential
+# DWARF调试信息支持
+apt install libdw-dev libelf-dev
+# 其他重要依赖
+apt install libssl-dev libslang2-dev libperl-dev
+apt install systemtap-sdt-dev libunwind-dev
+apt install libtraceevent-dev python3-setuptools libzstd-dev libcap-dev libnuma-dev libbabeltrace-dev libpfm4-dev
 
+# 进入perf源码目录
+cd linux/tools/perf
+
+# 编译
+make
+
+# 安装
+make prefix=/usr/local install
+# 或者
+make DESTDIR=/usr/local install
+```
+![[笔记/01 附件/01 附件/Linux分析与调试-Perf工具交叉编译/image.png|04 Linux/assets/Linux分析与调试-Perf工具交叉编译/image.png]]
 
 
 
