@@ -7,9 +7,9 @@ share: "true"
 windeployqt.exe .\<app>.exe
 ```
 接着会出现很多`dll`库在该目录下。
-![[笔记/01 附件/06 其他知识/assets/QT打包发布/image 4.png|笔记/01 附件/06 其他知识/assets/QT打包发布/image 4.png]]
+![[笔记/01 附件/QT打包发布/image 4.png|笔记/01 附件/QT打包发布/image 4.png]]
 如果只是打包`Qt5Core.dll`在其他电脑运行，会导致问题：
-![[笔记/01 附件/06 其他知识/assets/QT打包发布/image 5.png|笔记/01 附件/06 其他知识/assets/QT打包发布/image 5.png]]
+![[笔记/01 附件/QT打包发布/image 5.png|笔记/01 附件/QT打包发布/image 5.png]]
 这是因为缺失文件：
 ```shell
 libstdc++-6.dll
@@ -149,10 +149,10 @@ Qt5Widgets.dll                ← GUI控件（按钮、文本框等）
    └─ qpng.dll（你的截图里没显示，但可能需要）
 ```
 这是我的一次打包目录：
-![[笔记/01 附件/06 其他知识/assets/QT打包发布/image 6.png|笔记/01 附件/06 其他知识/assets/QT打包发布/image 6.png]]
+![[笔记/01 附件/QT打包发布/image 6.png|笔记/01 附件/QT打包发布/image 6.png]]
 当然最直接的办法是使用`Dependency Walker`,来查看未打包的`exe`依赖情况：
-![[笔记/01 附件/06 其他知识/assets/QT打包发布/image 8.png|笔记/01 附件/06 其他知识/assets/QT打包发布/image 8.png]]
+![[笔记/01 附件/QT打包发布/image 8.png|笔记/01 附件/QT打包发布/image 8.png]]
 或者使用[在线网站]]或者使用[在线网站](https://www.virustotal.com/)上传`未打包的exe文件`，转到`detail`：
-![[笔记/01 附件/06 其他知识/assets/QT打包发布/image 7.png|笔记/01 附件/06 其他知识/assets/QT打包发布/image 7.png]]
+![[笔记/01 附件/QT打包发布/image 7.png|笔记/01 附件/QT打包发布/image 7.png]]
 当然为了缩小大小，可以使用在打包时选择压缩：
-![[笔记/01 附件/06 其他知识/assets/QT打包发布/image 9.png|笔记/01 附件/06 其他知识/assets/QT打包发布/image 9.png]]
+![[笔记/01 附件/QT打包发布/image 9.png|笔记/01 附件/QT打包发布/image 9.png]]
