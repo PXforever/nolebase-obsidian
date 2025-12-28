@@ -165,8 +165,8 @@ hexdump -C /proc/device-tree/memory/reg
 hexdump -e '2/4 "addr: 0x%08x  size: 0x%08x\n"' /proc/device-tree/memory/reg
 
 # 64-bit cells（常见于 64 位系统，#address-cells=2, #size-cells=2）
-hexdump -e '4/4 "%08x"' /proc/device-tree/memory/reg | \
-  sed 's/\(.\{16\}\)\(.\{16\}\)/addr: 0x\1  size: 0x\2\n/g'
+hexdump -v -e '8/1 "%02x" " " 8/1 "%02x" "\n"' /proc/device-tree/memory/reg | \
+  awk '$2 != "0000000000000000" {printf "addr: 0x%s  size: 0x%s\n", $1, $2}'
 ```
 
 ### 5.2 处理大端序（Device Tree 使用大端）
